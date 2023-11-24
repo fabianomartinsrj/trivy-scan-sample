@@ -9,25 +9,8 @@ on:
 jobs:
   scan:
     name: Code scan
-    permissions: read-all      
-    ### use Reusable Workflows to call my workflow remotely
-    ### https://docs.github.com/en/actions/learn-github-actions/reusing-workflows
-    ### you can also call workflows from inside the same repo via file path
-    
-    #FIXME: customize uri to point to your own linter repository
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
     uses: fabianomartinsrj/trivy-scan-sample/.github/workflows/trivy.yaml@main
-      ### defaults to 0, which doesn't fail job if CVEs are found
-      ### set to 1 to fail (blocking) if CVEs (of your severities) are found
-      # exit-code: 0
-      
-      ### Comma delimited list of severities to scan for UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
-      ### default is HIGH,CRITICAL
-      # severity: HIGH,CRITICAL
-
-      ### Ignore unpatched/unfixed vulnerabilities
-      ### defaults to true
-      # ignore-unfixed: true
-      
-      ### Upload scan results to GitHub Security tab
-      ### defaults to false
-      # upload-results: false
