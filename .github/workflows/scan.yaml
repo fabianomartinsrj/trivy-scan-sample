@@ -11,7 +11,7 @@ jobs:
     ### you can also call workflows from inside the same repo via file path
     
     #FIXME: customize uri to point to your own linter repository
-    uses: fabianomartinsrj/trivy-scan-sample/.github/workflows/scan.yaml@main
+    uses: fabianomartinsrj/trivy-scan-sample/.github/workflows/templates/trivy.yaml@main
     secrets:    
       ### registry auth
       registry-username: ${{ github.actor }}
