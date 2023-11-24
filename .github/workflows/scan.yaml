@@ -8,7 +8,7 @@ on:
     
 jobs:
   scan:
-    name: Scan
+    name: Code scan
     permissions: read-all      
     ### use Reusable Workflows to call my workflow remotely
     ### https://docs.github.com/en/actions/learn-github-actions/reusing-workflows
