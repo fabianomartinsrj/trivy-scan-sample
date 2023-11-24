@@ -32,10 +32,9 @@ jobs:
         with:
           scan-type: 'fs'
           scan-ref: '.'
-          format: 'template'
+          format: 'sarif'
           exit-code: '1'
           vuln-type: 'os,library'
-          template: '@/contrib/sarif.tpl'
           output: 'trivy-results.sarif'
           severity: 'CRITICAL,HIGH'
 
