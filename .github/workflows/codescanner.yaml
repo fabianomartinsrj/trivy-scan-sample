@@ -5,14 +5,22 @@ on:
     branches: [ "master" ]
     
 jobs:
+  scan:
+    name: Trivy code scanner
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    uses: fabianomartinsrj/trivy-scan-sample/.github/workflows/trivy.yaml@main
+
   build:
-    name: Build
+    name: Build and scan container image
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build an image from Dockerfile
+      - name: Build container image
         run: |
           docker build -t sample-app .
 

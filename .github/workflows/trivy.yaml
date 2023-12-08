@@ -7,20 +7,12 @@ permissions:
   contents: read
 
 jobs:
-  scan:
-    name: Code scanner
-    permissions:
-      contents: read
-      security-events: write
-      actions: read
-    uses: fabianomartinsrj/trivy-scan-sample/.github/workflows/trivy.yaml@main
-
   build:
     permissions:
       contents: read
       security-events: write
       actions: read
-    name: Build and scan container image
+    name: Trivy scan local code
     runs-on: "ubuntu-22.04"
     steps:
       - name: Checkout code
