@@ -11,11 +11,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Build an image from Dockerfile
         run: |
           docker build -t sample-app .
+
       - name: Scan local image
-        uses: fabianomartinsrj/trivy-scan-sample/.github/workflows/trivy.yaml@master
+        uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
+        with:
+          image-ref: 'sample-app'
+          scan-ref: '.'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
 
   scan:
     name: Trivy
