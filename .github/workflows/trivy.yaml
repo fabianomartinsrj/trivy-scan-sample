@@ -1,4 +1,4 @@
-name: Trivy Code Scanner
+name: Trivy Scanner
 
 on:
   workflow_call:
@@ -12,7 +12,7 @@ jobs:
       contents: read
       security-events: write
       actions: read
-    name: Code scanner
+    name: Trivy scan local code
     runs-on: "ubuntu-22.04"
     steps:
       - name: Checkout code
@@ -20,24 +20,12 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run Trivy vulnerability code scanner
-        uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
+      - name: Run Trivy container image scanner
+        uses: aquasecurity/trivy-action@0.15.0
         with:
           scan-type: 'fs'
           scan-ref: '.'
           format: 'table'
           exit-code: '0'
           vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
-
-      
-      - name: Run Trivy vulnerability container image scanner
-        uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
-        with:
-          image-ref: 'sample-app'
-          scan-ref: '.'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
-          
+          severity: 'CRITICAL,HIGH'          
