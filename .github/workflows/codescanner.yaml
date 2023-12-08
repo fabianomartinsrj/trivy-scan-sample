@@ -14,6 +14,9 @@ jobs:
       - name: Build an image from Dockerfile
         run: |
           docker build -t sample-app .
+      - name: Scan local image
+        uses: fabianomartinsrj/trivy-scan-sample/.github/workflows/trivy.yaml@master
+
   scan:
     name: Trivy
     permissions:

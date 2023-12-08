@@ -1,4 +1,4 @@
-name: Trivy Code Scanner
+name: Trivy Scanner
 
 on:
   workflow_call:
