@@ -11,7 +11,7 @@ jobs:
       contents: read
       security-events: write
       actions: read
-    uses: fabianomartinsrj/trivy-scan-sample/.github/workflows/trivy.yaml@main
+    uses: fabianomartinsrj/trivy-scan-sample/.github/workflows/trivy.yaml@master
 
   build:
     name: Build and scan container image
