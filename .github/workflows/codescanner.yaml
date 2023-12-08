@@ -1,0 +1,23 @@
+name: Call Trivy
+on:
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "master" ]
+    
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build an image from Dockerfile
+        run: |
+          docker build -t sample-app .
+  scan:
+    name: Trivy
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    uses: fabianomartinsrj/trivy-scan-sample/.github/workflows/trivy.yaml@master
