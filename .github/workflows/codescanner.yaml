@@ -16,7 +16,7 @@ jobs:
         run: |
           docker build -t sample-app .
 
-      - name: Scan local image
+      - name: Scan local container image
         uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
         with:
           image-ref: 'sample-app'
@@ -26,11 +26,3 @@ jobs:
           hide-progress: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
-
-  scan:
-    name: Trivy
-    permissions:
-      contents: read
-      security-events: write
-      actions: read
-    uses: fabianomartinsrj/trivy-scan-sample/.github/workflows/trivy.yaml@master
